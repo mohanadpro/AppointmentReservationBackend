@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var logger = require('morgan');
+var allowCors=require('./allowCors');
 var path = require('path');
 // to enable cors
 const bcrypt = require('bcrypt');
@@ -18,6 +19,7 @@ var app = express();
 
 
 app.use(cors());
+app.use(allowCors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
