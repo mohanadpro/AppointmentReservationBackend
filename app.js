@@ -67,7 +67,7 @@ mongoos.connect(config.MONGO_URL, { useNewUrlParser: true }).then(conRes => {
 // ***************************
 
 app.use(logger('dev'));
-
+app.use('/', usersRouter);
 app.use('/users', usersRouter);
 app.use('/doctors', doctorRouter);
 app.use('/patients', patientRouter);
