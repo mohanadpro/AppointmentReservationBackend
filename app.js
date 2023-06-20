@@ -18,42 +18,26 @@ var settingsRouter=require('./routes/setting');
 var app = express();
 
 
-app.use(cors());
-app.use(allowCors());
+const allowlist = ['http://localhost:3000', 'https://appointment-reservation-6etd.vercel.app/']
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowlist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions));
+
+// app.use(cors());
+// app.use(allowCors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // to create folder product_images in project's path
 app.use(express.static(path.join(__dirname, 'doctor_images')))
-
-
-// enable cors on Vercel
-
-
-const allowCors = fn => async (req, res) => {
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  // another common pattern
-  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  )
-  if (req.method === 'OPTIONS') {
-    res.status(200).end()
-    return
-  }
-  return await fn(req, res)
-}
-
-const handler = (req, res) => {
-  const d = new Date()
-  res.end(d.toString())
-}
-
-module.exports = allowCors(handler)
-
 
 
 // connecting with DB
