@@ -1,7 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
 var logger = require('morgan');
-var allowCors=require('./allowCors');
 var path = require('path');
 // to enable cors
 const bcrypt = require('bcrypt');
