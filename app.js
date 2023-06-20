@@ -18,14 +18,14 @@ var settingsRouter=require('./routes/setting');
 var app = express();
 
 
-const allowlist = ['http://localhost:3000', 'https://appointment-reservation-6etd.vercel.app']
-const corsOptions = {
-  origin: allowlist
-}
+// const allowlist = ['http://localhost:3000', 'https://appointment-reservation-6etd.vercel.app']
+// const corsOptions = {
+//   origin: allowlist
+// }
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
-// app.use(cors());
+app.use(cors());
 // app.use(allowCors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'doctor_images')))
 // connecting with DB
 var mongoos = require('mongoose');
 const config = require('./config');
-
+console.log(config.MONGO_URL);
 mongoos.connect(config.MONGO_URL, { useNewUrlParser: true }).then(conRes => {
   User.find({}).then(result => {
     if (result.length < 1) {
