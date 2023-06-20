@@ -96,13 +96,13 @@ app.use(function (err, req, res, next) {
   })
 });
 
-const port = process.env.PORT || 9001;
-app.listen(port, () => console.log(`Listening to port ${port}`));
+// const port = process.env.PORT || 9001;
+// app.listen(port, () => console.log(`Listening to port ${port}`));
 
 // For publish
-// var port=process.env.PORT||5000
+var port=process.env.PORT||5000
 
-// var server=app.listen(port,function(){
-//   console.log('Server is running')
-// })
+var server=app.listen(port,function(){
+  console.log('Server is running')
+})
 module.exports = app;
