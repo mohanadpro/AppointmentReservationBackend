@@ -18,15 +18,9 @@ var settingsRouter=require('./routes/setting');
 var app = express();
 
 
-const allowlist = ['http://localhost:3000', 'https://appointment-reservation-6etd.vercel.app/']
+const allowlist = ['http://localhost:3000', 'https://appointment-reservation-6etd.vercel.app']
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowlist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  }
+  origin: allowlist
 }
 
 app.use(cors(corsOptions));
