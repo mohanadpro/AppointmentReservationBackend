@@ -9,6 +9,7 @@ const bcrypt = require('bcrypt');
 var cors = require('cors');
 var User = require('./models/users');
 var usersRouter = require('./routes/users');
+var testRouter = require('./routes/test');
 var doctorRouter = require('./routes/doctor');
 var patientRouter = require('./routes/patient');
 var appointmentRouter = require('./routes/appointment');
@@ -67,7 +68,7 @@ mongoos.connect(config.MONGO_URL, { useNewUrlParser: true }).then(conRes => {
 // ***************************
 
 app.use(logger('dev'));
-app.use('/', usersRouter);
+app.use('/', testRouter);
 app.use('/users', usersRouter);
 app.use('/doctors', doctorRouter);
 app.use('/patients', patientRouter);
