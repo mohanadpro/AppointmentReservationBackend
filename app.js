@@ -40,6 +40,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'doctor_images')))
 
 
+
 // connecting with DB
 var mongoos = require('mongoose');
 const config = require('./config');
