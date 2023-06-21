@@ -6,7 +6,6 @@ var path = require('path');
 const bcrypt = require('bcrypt');
 
 var cors = require('cors');
-var User = require('./models/users');
 var usersRouter = require('./routes/users');
 var testRouter = require('./routes/test');
 var doctorRouter = require('./routes/doctor');
@@ -79,7 +78,8 @@ app.use('/appsettings',settingsRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
 
-  next(createError(404));
+  // next(createError(404));
+  res.status(404).json({'Page is not found'})
 });
 
 // error handler
